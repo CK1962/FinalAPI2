@@ -2,6 +2,7 @@
 using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
+using FosterCareAPI2.ApiModels;
 
 namespace FosterCareAPI.ApiModels
 {
@@ -29,14 +30,14 @@ namespace FosterCareAPI.ApiModels
             };
         }
 
-        public static IEnumerable<ChildModel> ToApiModels(this IEnumerable<Child> Users)
+        public static IEnumerable<ChildModel> ToApiModels(this IEnumerable<Child> Children)
         {
-            return Users.Select(a => a.ToApiModel());
+            return Children.Select(c => c.ToApiModel());
         }
 
-        public static IEnumerable<Child> ToDomainModels(this IEnumerable<ChildModel> UserModels)
+        public static IEnumerable<Child> ToDomainModels(this IEnumerable<ChildModel> ChildModels)
         {
-            return UserModels.Select(a => a.ToDomainModel());
+            return ChildModels.Select(c => c.ToDomainModel());
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FosterCareAPI.Infrastructure.Data
+namespace FosterCareAPI2.Infrastructure.Data
 {
     public class ChildRepository : IChildRepository
     {
@@ -16,7 +16,7 @@ namespace FosterCareAPI.Infrastructure.Data
         }
 
 
-        public IEnumerable<Children> GetAll()
+        public IEnumerable<Child> GetAll()
         {
             return _dbContext.Child
                 // .Include(c => c.House)
@@ -35,9 +35,9 @@ namespace FosterCareAPI.Infrastructure.Data
 
         public Child Add(Child Child)
         {
-            _dbContext.Child.Add(Children);
+            _dbContext.Child.Add(Child);
             _dbContext.SaveChanges();
-            return Children;
+            return Child;
         }
 
         public Child Update(Child updatedChild)

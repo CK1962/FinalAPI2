@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using FosterCareAPI2.Core.Models;
 
-namespace FosterCareAPI.Core.Services
+namespace FosterCareAPI2.Core.Services
 {
-    interface IChildService
+    public interface IChildService
     {
         Child Add(Child newChild);
         Child Update(Child updatedChild);
         Child Get(int id);
-        IEnumerable<Children> GetAll();
+        IEnumerable<Child> GetAll();
         void Remove(int id);
     }
 }

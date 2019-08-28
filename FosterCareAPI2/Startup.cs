@@ -10,17 +10,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FosterCareAPI2.Core.Services;
+using FosterCareAPI2.Infrastructure.Data;
+using FosterCareAPI2.Core.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace FosterCareAPI2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
+        
             public Startup(IConfiguration configuration)
             {
                 Configuration = configuration;
             }
+        
 
         public IConfiguration Configuration { get; }
 
@@ -33,11 +37,11 @@ namespace FosterCareAPI2
             {
                 optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-
+            services.AddSingleton<IChildService, ChildService>();
+            
             services.AddDbContext<FosterAPIDbContext>();
 
-            services.AddScoped<IChildRepository, ChildRepository>();
-            services.AddScoped<ChildService, ChildService>();
+            services.AddScoped<IChildService, ChildService>();
 
             //services.AddScoped<IHouseRepository, HouseRepository>();
             //services.AddScoped<IHouseService, HouseService>();

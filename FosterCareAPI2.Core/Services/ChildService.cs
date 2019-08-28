@@ -24,7 +24,7 @@ namespace FosterCareAPI2.Core.Services
             return _childRepository.Get(id);
         }
 
-        public IEnumerable<Children> GetAll()
+        public IEnumerable<Child> GetAll()
         {
             return _childRepository.GetAll();
         }

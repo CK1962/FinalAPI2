@@ -1,11 +1,12 @@
 ﻿using FosterCareAPI2.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FosterCareAPI.Infrastructure.Data
+
+namespace FosterCareAPI2.Infrastructure.Data
 {
     public class FosterAPIDbContext : DbContext
     {
-        public DbSet<Children> Child { get; set; }
+        public DbSet<Child> Child { get; set; }
 
         // public DbSet<House> Home { get; set; }
 
@@ -15,8 +16,11 @@ namespace FosterCareAPI.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Children>().HasData(
-                new Child { Id = 1, Name = "Ashton", Dob = "01/01/01", MoveInDate = "08/08/08" });
+            modelBuilder.Entity<Child>().HasData(
+                 new Child { Id = 1, Name = "Ashton", Dob = "01/01/01", MoveInDate = "08/08/08" },
+                 new Child { Id = 2, Name = "Dylan", Dob = "01/01/96", MoveInDate = "09/09/09" },
+                 new Child { Id = 3, Name = "Lilly", Dob = "01/01/05", MoveInDate = "02/02/12" },
+                 new Child { Id = 4, Name = "Mariah", Dob = "01/01/12", MoveInDate = "03/03/13" });
 
             //modelBuilder.Entity<Appointment>().HasData(
             //   new Appointment { Id = 1, Type = "Medical", DrName = "Vuelvas" });

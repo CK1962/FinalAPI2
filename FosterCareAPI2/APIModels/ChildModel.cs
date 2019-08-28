@@ -1,9 +1,9 @@
 ﻿using System;
 using FosterCareAPI2.Core.Models;
 
-namespace FosterCareAPI.ApiModels
+namespace FosterCareAPI2.ApiModels
 {
-    public class ChildrenModel
+    public class ChildModel
     {
         public int Id { get; set; }
 
