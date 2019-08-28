@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FosterCareAPI2.ApiModels;
 
-namespace FosterCareAPI.ApiModels
+namespace FosterCareAPI2.ApiModels
 {
     public static class ChildMappingExtensions
     {

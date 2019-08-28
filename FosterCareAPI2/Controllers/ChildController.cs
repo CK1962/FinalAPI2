@@ -57,11 +57,14 @@ namespace FosterCareAPI2.Controllers
 
         // POST api/child
         [HttpPost]
-        public IActionResult Post([FromBody] ChildModel newchild)
+        public IActionResult Post([FromBody] ChildModel childModel)
         {
             try
             {
-                return Ok(_childService.Add(newchild).ToApiModel());
+               var child = childModel.ToDomainModel();
+                _childService.Add(child);
+                var newChildModel = child.ToApiModel();
+                return Ok(newChildModel);
             }
             catch (System.Exception ex)
             {
