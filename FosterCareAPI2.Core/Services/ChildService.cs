@@ -2,6 +2,7 @@
 using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
 
+
 namespace FosterCareAPI2.Core.Services
 {
     public class ChildService : IChildService
@@ -9,9 +10,9 @@ namespace FosterCareAPI2.Core.Services
         private readonly IChildRepository _childRepository;
 
         // TODO: inject IChildRepository
-        public ChildService(IChildRepository ChildRepository)
+        public ChildService(IChildRepository childRepository)
         {
-            _childRepository = ChildRepository;
+            _childRepository = childRepository;
         }
 
         public Child Add(Child newChild)

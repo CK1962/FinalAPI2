@@ -37,11 +37,13 @@ namespace FosterCareAPI2
             {
                 optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            services.AddSingleton<IChildService, ChildService>();
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+
             
             services.AddDbContext<FosterAPIDbContext>();
 
             services.AddScoped<IChildService, ChildService>();
+            services.AddScoped<IChildRepository, ChildRepository>();
 
             //services.AddScoped<IHouseRepository, HouseRepository>();
             //services.AddScoped<IHouseService, HouseService>();
