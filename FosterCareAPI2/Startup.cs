@@ -45,8 +45,8 @@ namespace FosterCareAPI2
             services.AddScoped<IChildService, ChildService>();
             services.AddScoped<IChildRepository, ChildRepository>();
 
-            //services.AddScoped<IHouseRepository, HouseRepository>();
-            //services.AddScoped<IHouseService, HouseService>();
+            services.AddScoped<IHouseRepository, HouseRepository>();
+            services.AddScoped<IHouseService, HouseService>();
 
             //services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             // services.AddScoped<IAppointmentService, AppointmentService>();

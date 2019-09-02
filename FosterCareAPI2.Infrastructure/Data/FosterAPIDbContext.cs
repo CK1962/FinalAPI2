@@ -8,7 +8,7 @@ namespace FosterCareAPI2.Infrastructure.Data
     {
         public DbSet<Child> Child { get; set; }
 
-        // public DbSet<House> Home { get; set; }
+        public DbSet<House> Home { get; set; }
 
         //public DbSet<Appointment> Appts { get; set; }
 
@@ -25,8 +25,10 @@ namespace FosterCareAPI2.Infrastructure.Data
             //modelBuilder.Entity<Appointment>().HasData(
             //   new Appointment { Id = 1, Type = "Medical", DrName = "Vuelvas" });
 
-            //modelBuilder.Entity<House>().HasData(
-            //    new House { Id = 1, Name = "Keslin", City = "Lubbock"});
+            modelBuilder.Entity<House>().HasData(
+                new House { Id = 1, Name = "Keslin", City = "Lubbock" },
+                new House { Id = 2, Name = "Smith", City = "Plainview" },
+                new House { Id = 3, Name = "Jones", City = "Amarillo" });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
