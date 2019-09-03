@@ -12,6 +12,7 @@ using FosterCareAPI2.Infrastructure.Data;
 using FosterCareAPI2.Core.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace FosterCareAPI2
@@ -35,10 +36,6 @@ namespace FosterCareAPI2
             .AddJsonOptions(optionsBuilder =>
             {
                 optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            });
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/build";
             });
 
             services.AddHttpContextAccessor();
@@ -72,7 +69,6 @@ namespace FosterCareAPI2
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

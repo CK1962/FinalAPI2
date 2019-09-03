@@ -1,4 +1,6 @@
-﻿using FosterCareAPI2.Core.Models;
+﻿using System;
+using System.Collections.Generic;
+using FosterCareAPI2.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -33,6 +35,7 @@ namespace FosterCareAPI2.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlite("DataSource=../FosterCareAPI2.Infrastructure/Children.db");
         }
     }

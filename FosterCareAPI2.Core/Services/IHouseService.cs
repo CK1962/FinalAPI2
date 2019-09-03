@@ -10,6 +10,7 @@ namespace FosterCareAPI2.Core.Services
         House Update(House updatedHouse);
         House Get(int id);
         IEnumerable<House> GetAll();
+        IEnumerable<House> GetChildHome(int childId);
         void Remove(int id);
     }
 }

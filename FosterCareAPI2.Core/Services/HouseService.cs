@@ -1,7 +1,7 @@
 ﻿using System;
 using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace FosterCareAPI2.Core.Services
 {
@@ -18,7 +18,6 @@ namespace FosterCareAPI2.Core.Services
             _childRepository = childRepository;
            // _appointmentRepository = appointmentRepository;
         }
-
         public House Add(House newHouse)
         {
            return _houseRepository.Add(newHouse);
