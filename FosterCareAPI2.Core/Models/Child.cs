@@ -12,5 +12,9 @@ namespace FosterCareAPI2.Core.Models
         public string Dob { get; set; }
 
         public string MoveInDate { get; set; }
+
+        public ICollection<House> Home { get; set; }
+
+        //public ICollection<Appointment> Appts { get; set; }
     }
 }

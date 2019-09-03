@@ -18,8 +18,8 @@ namespace FosterCareAPI2.Infrastructure.Data
 
         public IEnumerable<Child> GetAll()
         {
-            return _dbContext.Child
-                // .Include(c => c.House)
+            return _dbContext.Children
+                 .Include(c => c.Home)
                 //  .Include(c => c.Appointments)
                 .ToList();
         }
@@ -27,28 +27,28 @@ namespace FosterCareAPI2.Infrastructure.Data
 
         public Child Get(int id)
         {
-            return _dbContext.Child
-                 //  .Include(c => c.House)
+            return _dbContext.Children
+                  .Include(c => c.Home)
                  //  .Include(c => c.Appointments)
                  .SingleOrDefault(c => c.Id == id);
         }
 
-        public Child Add(Child Child)
+        public Child Add(Child child)
         {
-            _dbContext.Child.Add(Child);
+            _dbContext.Children.Add(child);
             _dbContext.SaveChanges();
-            return Child;
+            return child;
         }
 
         public Child Update(Child updatedChild)
         {
-            var currentChild = _dbContext.Child.Find(updatedChild.Id);
+            var currentChild = _dbContext.Children.Find(updatedChild.Id);
             if (currentChild == null) return null;
             _dbContext.Entry(currentChild)
                 .CurrentValues
                 .SetValues(updatedChild);
 
-            _dbContext.Child.Update(currentChild);
+            _dbContext.Children.Update(currentChild);
             _dbContext.SaveChanges();
             return currentChild;
         }
@@ -58,7 +58,7 @@ namespace FosterCareAPI2.Infrastructure.Data
             var childToDelete = Get(id);
 
             // TODO: remove blog
-            _dbContext.Child.Remove(childToDelete);
+            _dbContext.Children.Remove(childToDelete);
             _dbContext.SaveChanges();
         }
     }

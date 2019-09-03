@@ -6,7 +6,7 @@ namespace FosterCareAPI2.Infrastructure.Data
 {
     public class FosterAPIDbContext : DbContext
     {
-        public DbSet<Child> Child { get; set; }
+        public DbSet<Child> Children { get; set; }
 
         public DbSet<House> Home { get; set; }
 

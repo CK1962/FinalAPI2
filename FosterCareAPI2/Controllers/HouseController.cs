@@ -79,7 +79,7 @@ namespace FosterCareAPI2.Controllers
         {
             try
             {
-                return Ok(_houseService.Update(House).ToApiModel());
+                return Ok(_houseService.Update(house).ToApiModel());
             }
             catch (Exception ex)
             {

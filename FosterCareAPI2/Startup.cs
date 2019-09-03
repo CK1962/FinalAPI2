@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +12,7 @@ using FosterCareAPI2.Infrastructure.Data;
 using FosterCareAPI2.Core.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
 
 namespace FosterCareAPI2
 {
@@ -37,16 +36,22 @@ namespace FosterCareAPI2
             {
                 optionsBuilder.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
+            });
 
-            
+            services.AddHttpContextAccessor();
+
+
             services.AddDbContext<FosterAPIDbContext>();
 
             services.AddScoped<IChildService, ChildService>();
             services.AddScoped<IChildRepository, ChildRepository>();
 
-            services.AddScoped<IHouseRepository, HouseRepository>();
             services.AddScoped<IHouseService, HouseService>();
+            services.AddScoped<IHouseRepository, HouseRepository>();
+            
 
             //services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             // services.AddScoped<IAppointmentService, AppointmentService>();
@@ -61,12 +66,19 @@ namespace FosterCareAPI2
             }
             else
             {
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
         }
     }
 }

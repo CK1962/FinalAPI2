@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FosterCareAPI2.Core.Models
 {
-    public class house
+    public class HouseModel
     {
         public int Id { get; set; }
 
