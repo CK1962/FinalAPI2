@@ -19,8 +19,8 @@ namespace FosterCareAPI2.Infrastructure.Data
         public IEnumerable<Child> GetAll()
         {
             return _dbContext.Children
-                 .Include(c => c.Home)
-                //  .Include(c => c.Appointments)
+                 .Include(c => c.ChildHomes)
+                 .ThenInclude(Ch => Ch.House)
                 .ToList();
         }
 
@@ -28,7 +28,7 @@ namespace FosterCareAPI2.Infrastructure.Data
         public Child Get(int id)
         {
             return _dbContext.Children
-                  .Include(c => c.Home)
+                  .Include(c => c.ChildHomes)
                  //  .Include(c => c.Appointments)
                  .SingleOrDefault(c => c.Id == id);
         }

@@ -17,7 +17,7 @@ namespace FosterCareAPI2.Core.Models
         //public int AppointmentId { get; set; }
         //public Appointment Appointment { get; set; }
 
-        public ICollection<House> Home { get; set; }
+        public ICollection<ChildHome> ChildHomes { get; set; }
 
         //public ICollection<Appointment> Appts { get; set; }
     }

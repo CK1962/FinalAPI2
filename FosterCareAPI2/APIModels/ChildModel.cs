@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FosterCareAPI2.Core.Models;
 
 namespace FosterCareAPI2.ApiModels
@@ -12,5 +13,7 @@ namespace FosterCareAPI2.ApiModels
         public string Dob { get; set; }
 
         public string MoveInDate { get; set; }
+
+        public IEnumerable<ChildHome> ChildHomes { get; set; }
     }
 }

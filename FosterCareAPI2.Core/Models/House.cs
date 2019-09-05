@@ -11,7 +11,7 @@ namespace FosterCareAPI2.Core.Models
 
         public string City { get; set; }
 
-        public ICollection<Child> Children { get; set; }
+        public ICollection<ChildHome> ChildHomes { get; set; }
 
         //public ICollection<Appointment> Appts { get; set; }
 

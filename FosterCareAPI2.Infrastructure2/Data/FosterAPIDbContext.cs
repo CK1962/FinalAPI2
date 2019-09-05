@@ -10,12 +10,24 @@ namespace FosterCareAPI2.Infrastructure.Data
     {
         public DbSet<Child> Children { get; set; }
 
+        public DbSet<ChildHome> ChildHomes { get; set; }
+
         public DbSet<House> Home { get; set; }
 
         //public DbSet<Appointment> Appts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ChildHome>()
+        .HasKey(bc => new { bc.ChildId, bc.HouseId });
+            modelBuilder.Entity<ChildHome>()
+                .HasOne(bc => bc.Child)
+                .WithMany(b => b.ChildHomes)
+                .HasForeignKey(bc => bc.ChildId);
+            modelBuilder.Entity<ChildHome>()
+                .HasOne(bc => bc.House)
+                .WithMany(c => c.ChildHomes)
+                .HasForeignKey(bc => bc.HouseId);
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Child>().HasData(
@@ -28,15 +40,16 @@ namespace FosterCareAPI2.Infrastructure.Data
             //   new Appointment { Id = 1, Type = "Medical", DrName = "Vuelvas" });
 
             modelBuilder.Entity<House>().HasData(
-                new House { Id = 1, Name = "Keslin", City = "Lubbock" },
-                new House { Id = 2, Name = "Smith", City = "Plainview" },
-                new House { Id = 3, Name = "Jones", City = "Amarillo" });
+                new House { Id = 1, Name = "Keslin", City = "Lubbock" });
+
+            modelBuilder.Entity<ChildHome>().HasData(
+               new ChildHome {ChildId= 1, HouseId=1});
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("DataSource=../FosterCareAPI2.Infrastructure/Children.db");
+            optionsBuilder.UseSqlite("DataSource=../FosterCareAPI2.Infrastructure2/Children.db");
         }
     }
 }

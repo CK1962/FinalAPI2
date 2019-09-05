@@ -16,6 +16,7 @@ namespace FosterCareAPI2.ApiModels
                 Name = child.Name,
                 Dob = child.Dob,
                 MoveInDate = child.MoveInDate,
+                ChildHomes = child.ChildHomes
             };
         }
 
@@ -26,7 +27,7 @@ namespace FosterCareAPI2.ApiModels
                 Id = childModel.Id,
                 Name = childModel.Name,
                 Dob = childModel.Dob,
-                MoveInDate = childModel.MoveInDate,
+                MoveInDate = childModel.MoveInDate
             };
         }
 

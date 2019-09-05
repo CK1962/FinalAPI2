@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FosterCareAPI2.Infrastructure.Migrations
+namespace FosterCareAPI2.Infrastructure2.Migrations
 {
     [DbContext(typeof(FosterAPIDbContext))]
     partial class FosterAPIDbContextModelSnapshot : ModelSnapshot
@@ -28,7 +28,7 @@ namespace FosterCareAPI2.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Child");
+                    b.ToTable("Children");
 
                     b.HasData(
                         new
@@ -59,6 +59,54 @@ namespace FosterCareAPI2.Infrastructure.Migrations
                             MoveInDate = "03/03/13",
                             Name = "Mariah"
                         });
+                });
+
+            modelBuilder.Entity("FosterCareAPI2.Core.Models.ChildHome", b =>
+                {
+                    b.Property<int>("ChildId");
+
+                    b.Property<int>("HouseId");
+
+                    b.HasKey("ChildId", "HouseId");
+
+                    b.HasIndex("HouseId");
+
+                    b.ToTable("ChildHomes");
+                });
+
+            modelBuilder.Entity("FosterCareAPI2.Core.Models.House", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Home");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Lubbock",
+                            Name = "Keslin"
+                        });
+                });
+
+            modelBuilder.Entity("FosterCareAPI2.Core.Models.ChildHome", b =>
+                {
+                    b.HasOne("FosterCareAPI2.Core.Models.Child", "Child")
+                        .WithMany("ChildHomes")
+                        .HasForeignKey("ChildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FosterCareAPI2.Core.Models.House", "House")
+                        .WithMany("ChildHomes")
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
