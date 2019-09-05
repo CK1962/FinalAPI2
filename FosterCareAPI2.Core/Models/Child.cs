@@ -13,8 +13,6 @@ namespace FosterCareAPI2.Core.Models
 
         public string MoveInDate { get; set; }
 
-        public int HouseId { get; set; }
-        public House House { get; set; }
 
         //public int AppointmentId { get; set; }
         //public Appointment Appointment { get; set; }
